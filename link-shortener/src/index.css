@@ -1,0 +1,270 @@
+body {
+    background-image: url('photo1.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-size: 1vw;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    text-align: center;
+    margin-top: 250px;
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #3498db;
+  border-radius: 50%;
+  width: 5%;
+  height: 5%;
+  animation: spin 2s linear infinite;
+}
+.spinner {
+  min-width: 2em;
+  min-height: 2em;
+  max-width: 3em;
+  max-height: 3em;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+input {
+    height: 35px;
+    width: 500px;
+    font-size: 20px;
+}
+
+button {
+    height: 44px;
+    width: 150px;
+    font-size: 20px;
+    margin-left: 10px;
+    border-radius: 50px;
+    border: 1px solid black;
+    background-color: white;
+    transition: background-color 0.3s ease;
+}
+
+button:hover, button:focus {
+    background-color: #BCB6D4;
+    cursor: pointer;
+}
+
+.content {
+    width: 90%;
+    max-width: 700px;
+    margin: auto;
+}
+
+.error {
+    font-size: 30px;
+    font-weight: bold;
+    color: red;
+    margin-top: 20px;
+}
+
+.short-url {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        font-size: 4vw;
+    }
+
+    input, button {
+        width: 90vw;
+        font-size: 4vw;
+    }
+
+    button {
+        margin-top:20px;
+        width: 40vw;
+    }
+
+    .short-url {
+        font-size: 3vw;
+    }
+
+    .error {
+        font-size: 4vw;
+    }
+    .spinner {
+        width: 3%;
+        height: 3%;
+    }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    body {
+        font-size: 3.5vw;
+    }
+
+    button {
+        margin-top:10px;
+        width: 80vw;
+        font-size: 3vw;
+    }
+
+    input {
+        margin-bottom:10px;
+        width: 80vw;
+        font-size: 3vw;
+    }
+
+    button {
+        width: 35vw;
+    }
+
+    .short-url {
+        font-size: 2.5vw;
+    }
+
+    .error {
+        font-size: 3.5vw;
+    }
+
+    .spinner {
+        width: 4%;
+        height: 4%;
+    }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    body {
+        font-size: 3vw;
+    }
+
+    button {
+        margin-top:10px;
+        width: 70vw;
+        font-size: 2.5vw;
+    }
+
+    input {
+        margin-bottom:15px;
+        width: 70vw;
+        font-size: 2.5vw;
+    }
+
+    button {
+        width: 30vw;
+    }
+
+    .short-url {
+        font-size: 2vw;
+    }
+
+    .error {
+        font-size: 3vw;
+    }
+
+    .spinner {
+        width: 4%;
+        height: 4%;
+    }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1440px) {
+    body {
+        font-size: 2.5vw;
+    }
+
+    input, button {
+        width: 60vw;
+        font-size: 2vw;
+    }
+
+    button {
+        width: 25vw;
+    }
+
+    .short-url {
+        font-size: 1.75vw;
+    }
+
+    .error {
+        font-size: 2.5vw;
+    }
+
+    .spinner {
+        width: 4%;
+        height: 4%;
+    }
+}
+
+@media screen and (min-width: 1441px) and (max-width: 1920px) {
+    body {
+        font-size: 2vw;
+    }
+
+    input, button {
+        width: 50vw;
+        font-size: 1.5vw;
+    }
+
+    button {
+        width: 20vw;
+    }
+
+    .short-url {
+        font-size: 1.5vw;
+    }
+
+    .error {
+        font-size: 2vw;
+    }
+
+    .spinner {
+         width: 4%;
+         height: 5%;
+    }
+}
+
+@media screen and (min-width: 1921px) and (max-width: 3840px) {
+    body {
+        font-size: 1.5vw;
+    }
+
+    input, button {
+        width: 40vw;
+        font-size: 1.25vw;
+    }
+
+    button {
+        width: 15vw;
+    }
+
+    .short-url {
+        font-size: 1.25vw;
+    }
+
+    .error {
+        font-size: 1.75vw;
+    }
+
+    .spinner {
+        width: 2%;
+        height: 2%;
+    }
+}
