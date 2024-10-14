@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Home: React.FC = () => {
   const [inputUrl, setInputUrl] = useState('');
   const [shortUrl, setShortUrl] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const [buttonColor, setButtonColor] = useState('white');
-  const [buttonPressed, setButtonPressed] = useState(false);
-  const [buttonHovered, setButtonHovered] = useState(false);
+
+  useEffect(() => {
+    document.title = 'Сокращатель ссылок';
+  }, []);
 
   const handleSubmit = () => {
 
@@ -28,39 +29,14 @@ const Home: React.FC = () => {
     }, 2000);
   };
 
-  // Проверка валидности введенной ссылки
   const isValidUrl = (url: string) => {
-                                          const urlPattern = new RegExp('^(https?:\\/\\/)?'+ // Протокол
+    const urlPattern = new RegExp('^(https?:\\/\\/)' + // Протокол (http или https)
       '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|'+ // Доменное имя
       '((\\d{1,3}\\.){3}\\d{1,3}))'+ // IP (v4)
       '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // Путь
       '(\\?[;&a-z\\d%_.~+=-]*)?'+ // Параметры
       '(\\#[-a-z\\d_]*)?$','i'); // Якорь
     return !!urlPattern.test(url);
-  };
-
-  const handleMouseDown = () => {
-    setButtonPressed(true);
-    setButtonColor('#BCB6D4');
-  };
-
-  const handleMouseUp = () => {
-    setButtonPressed(false);
-    setButtonColor('white');
-  };
-
-  const handleMouseEnter = () => {
-     setButtonHovered(true);
-     if (!buttonPressed) {
-        setButtonColor('#BCB6D4');
-     }
-  };
-
-  const handleMouseLeave = () => {
-     setButtonHovered(false);
-     if (!buttonPressed) {
-        setButtonColor('white');
-     }
   };
 
   return (
@@ -73,12 +49,7 @@ const Home: React.FC = () => {
         placeholder="Введите ссылку"
       />
       <button
-        onMouseDown={handleMouseDown}
-        onMouseUp={handleMouseUp}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
         onClick={handleSubmit}
-        style={{ backgroundColor: buttonColor }}
       >
         <strong>Сократить</strong>
       </button>
@@ -95,7 +66,9 @@ const Home: React.FC = () => {
 
       {!error && shortUrl && !loading && (
           <div className="short-url">
-            <h2>Короткая ссылка: {shortUrl} </h2>
+            <h2>
+                Короткая ссылка: <a href={shortUrl} target="_blank" rel="noopener noreferrer">{shortUrl}</a>
+            </h2>
           </div>
       )}
     </div>

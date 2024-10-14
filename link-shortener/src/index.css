@@ -1,5 +1,5 @@
 body {
-    background-image: url('photo1.png');
+    background-image: url('background.svg');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -8,6 +8,7 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .container {
@@ -29,7 +30,7 @@ body {
 
 .spinner {
   border: 16px solid #f3f3f3;
-  border-top: 16px solid #3498db;
+  border-top: 16px solid #372579;
   border-radius: 50%;
   width: 5%;
   height: 5%;
@@ -48,25 +49,31 @@ body {
 }
 
 input {
-    height: 35px;
-    width: 500px;
-    font-size: 20px;
+    height: 2.2em;
+    width: 25em;
+    font-size: 1em;
+    font-family: 'Montserrat', sans-serif;
 }
 
 button {
-    height: 44px;
-    width: 150px;
-    font-size: 20px;
-    margin-left: 10px;
+    height: 2.2em;
+    width: 12em;
+    font-size: 1em;
+    margin-left: 0.5em;
     border-radius: 50px;
     border: 1px solid black;
     background-color: white;
     transition: background-color 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
 }
 
-button:hover, button:focus {
-    background-color: #BCB6D4;
-    cursor: pointer;
+@media (hover: hover) {
+    button:hover, button:active {
+        background-color: #372579;
+        cursor: pointer;
+        color: white;
+        font-family: 'Montserrat', sans-serif;
+    }
 }
 
 .content {
@@ -80,11 +87,25 @@ button:hover, button:focus {
     font-weight: bold;
     color: red;
     margin-top: 20px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .short-url {
     margin-top: 20px;
     font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+}
+.short-url a {
+    color: #372579;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.short-url a:hover {
+    color: #372579;
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 480px) {
@@ -247,12 +268,15 @@ button:hover, button:focus {
     }
 
     input, button {
-        width: 40vw;
-        font-size: 1.25vw;
+       width: 40vw;
+       font-size: 1.25vw;
+       height: auto;
+       padding: 1vw;
     }
 
     button {
         width: 15vw;
+        height: auto;
     }
 
     .short-url {
