@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const Home: React.FC = () => {
   const [inputUrl, setInputUrl] = useState('');
@@ -10,24 +11,43 @@ const Home: React.FC = () => {
     document.title = 'Сокращатель ссылок';
   }, []);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+        setShortUrl('');
+        setError('');
 
-    setShortUrl('');
+        if (!isValidUrl(inputUrl)) {
+          setError('Неверная ссылка');
+          return;
+        }
 
-    if (!isValidUrl(inputUrl)) {
-      setError('Неверная ссылка');
-      setShortUrl('');
-      return;
-    }
+        setLoading(true);
 
-    setError('');
-    setLoading(true);
+        try {
+          const response = await axios.post('http://127.0.0.1:9000/test/', {
+            original_url: inputUrl
+          });
+          setShortUrl(response.data.short_url);
+        } catch (err) {
+          setError('Ошибка при сокращении ссылки');
+        } finally {
+          setLoading(false);
+        }
+    };
 
-    setTimeout(() => {
-      setShortUrl(`https://short.link`);
-      setLoading(false);
-    }, 2000);
-  };
+    const handleShortUrlClick = async () => {
+          setError('');
+          setLoading(true);
+
+          try {
+            const response = await axios.get('http://127.0.0.1:9000/');
+            window.location.href = response.data.original_url;
+          } catch (err) {
+            setError('Ошибка при получении сокращённой ссылки');
+          } finally {
+            setLoading(false);
+          }
+      };
+
 
   const isValidUrl = (url: string) => {
     const urlPattern = new RegExp('^(https?:\\/\\/)' + // Протокол (http или https)
@@ -67,7 +87,7 @@ const Home: React.FC = () => {
       {!error && shortUrl && !loading && (
           <div className="short-url">
             <h2>
-                Короткая ссылка: <a href={shortUrl} target="_blank" rel="noopener noreferrer">{shortUrl}</a>
+                Короткая ссылка: <a href="#" onClick={handleShortUrlClick} target="_blank" rel="noopener noreferrer">{shortUrl}</a>
             </h2>
           </div>
       )}
